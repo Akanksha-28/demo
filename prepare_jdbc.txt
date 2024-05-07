@@ -1,0 +1,24 @@
+import java.sql.*;
+import java.util.*;
+
+public class PjdbcInsertTest
+{
+	public static void main(String[] args)
+	{
+	try
+	{
+	   Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/java","root","root");
+	   PreparedStatement ps = c.prepareStatement("insert into student values(?,?,?)");
+	   ps.setInt(1,10);
+	   ps.setString(2,"brgnt");
+	   ps.setFloat(3,6789.09f);
+	   int x = ps.executeUpdate();
+	   System.out.println(x+"rows inserted");
+	   ps.close();
+	   c.close();
+	}
+	catch(Exception e)
+	{
+	   e.printstackTrace();
+	}
+}
